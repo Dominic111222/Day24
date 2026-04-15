@@ -1,12 +1,24 @@
 package com.example.demo.entity;
-
+ 
+import java.util.Date;
+ 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
-
+import jakarta.validation.constraints.NotNull;
+@Entity
 public class Note {
-long id;
+@GeneratedValue(strategy = GenerationType.AUTO)
+@Id
+private long id;
 @NotBlank
-String Title;
+private String title;
 @NotBlank
+private String content;
+@NotNull(message="Date is required")
+private Date dateTime;
 public long getId() {
 	return id;
 }
@@ -25,14 +37,11 @@ public String getContent() {
 public void setContent(String content) {
 	this.content = content;
 }
-
-String title;
-String content;
-//STATUS status;
-
+public Date getDateTime() {
+	return dateTime;
 }
-
- enum STATUS
-{
-	CLOSED,CREATED
+public void setDateTime(Date dateTime) {
+	this.dateTime = dateTime;
+}
+ 
 }
